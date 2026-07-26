@@ -16,7 +16,10 @@ jobs:
       - run: |
           git config user.name "wizardstrike1"
           git config user.email "124199566+wizardstrike1@users.noreply.github.com"
-          date -u +"%Y-%m-%dT%H:%M:%SZ" > last_run
-          git add last_run
-          git commit -m "daily"
-          git push
+          N=$(( ( $(date -u +%s) - $(date -u -d '2026-07-26' +%s) ) / 86400 + 1 ))
+          echo "day: $N" > README.md
+          if ! git diff --quiet; then
+            git add README.md
+            git commit -m "day $N"
+            git push
+          fi

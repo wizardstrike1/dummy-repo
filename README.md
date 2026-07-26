@@ -1,3 +1,1 @@
-# dummy-repo
-
-2
+day: 1
